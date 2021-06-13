@@ -30,10 +30,12 @@ const startServer = async () => {
   app.use(cors());
   server.applyMiddleware({ app });
   // The `listen` method launches a web server.
-  app.listen(process.env.PORT || 5000, () => {
+  app.listen("https://foodguru-wj.herokuapp.com/", () => {
     console.log(`server ready`);
   });
 };
+
+//process.env.PORT || 5000
 
 try {
   startServer();
