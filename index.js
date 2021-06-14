@@ -25,6 +25,10 @@ const startServer = async () => {
 
   await server.start();
 
+  app.get("/", (req, res) => {
+    res.send("hello");
+  });
+
   app.use(express.static("public"));
 
   app.use(cors());

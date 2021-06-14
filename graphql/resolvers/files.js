@@ -45,15 +45,13 @@ const fileResolvers = {
       // await stream.pipe(fs.createWriteStream(pathName));
 
       return {
-        url: `http://localhost:${
-          process.env.PORT || 5000
-        }/images/${randomName}`,
+        url: `https://foodguru-wj.herokuapp.com/images/${randomName}`,
       };
     },
   },
 };
-
-module.exports = fileResolvers;
+// url: `http://localhost:${process.env.PORT || 5000}/images/${randomName}`,
+//   (module.exports = fileResolvers);
 
 //   uploadFile: async (_, { file }) => {
 //     const { createReadStream, filename } = await file;
