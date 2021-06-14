@@ -29,9 +29,7 @@ const startServer = async () => {
     res.send("hello");
   });
 
-  app.use(
-    cors({ origin: "https://peaceful-kilby-bf3898.netlify.app/weijun/home" })
-  );
+  app.use(cors({ origin: "*" }));
   // cors({ origin: "https://peaceful-kilby-bf3898.netlify.app/weijun/home" })
   app.use(express.static("public"));
 
