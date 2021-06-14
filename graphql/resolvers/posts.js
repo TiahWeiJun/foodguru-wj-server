@@ -1,5 +1,6 @@
 const Post = require("../../models/Post.js");
 const checkAuth = require("../../utils/checkAuth.js");
+const fs = require("fs");
 
 const postResolvers = {
   Query: {
@@ -89,7 +90,9 @@ const postResolvers = {
         }
 
         if (user.username === post.username) {
+          fs.unlinkSync(post.imageURL);
           await post.delete();
+
           return "Post deleted successfully";
         } else {
           throw new Error("Action not allowed");
