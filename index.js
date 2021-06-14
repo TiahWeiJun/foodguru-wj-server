@@ -29,12 +29,13 @@ const startServer = async () => {
     res.send("hello");
   });
 
-  app.use(express.static("public"));
-
-  server.applyMiddleware({ app });
   app.use(
     cors({ origin: "https://peaceful-kilby-bf3898.netlify.app/weijun/home" })
   );
+  app.use(express.static("public"));
+
+  server.applyMiddleware({ app });
+
   // The `listen` method launches a web server.
   app.listen(process.env.PORT || 5000, () => {
     console.log(`server ready`);
