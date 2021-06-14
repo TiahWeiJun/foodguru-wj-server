@@ -11,7 +11,6 @@ require("dotenv").config();
 
 const startServer = async () => {
   const app = express();
-  app.use(cors());
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -33,6 +32,7 @@ const startServer = async () => {
   app.use(express.static("public"));
 
   server.applyMiddleware({ app });
+  app.use(cors());
   // The `listen` method launches a web server.
   app.listen(process.env.PORT || 5000, () => {
     console.log(`server ready`);
