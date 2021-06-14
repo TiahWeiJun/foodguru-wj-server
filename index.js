@@ -11,6 +11,7 @@ require("dotenv").config();
 
 const startServer = async () => {
   const app = express();
+  app.use(cors({ origin: "*" }));
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -29,7 +30,6 @@ const startServer = async () => {
     res.send("hello");
   });
 
-  app.use(cors({ origin: "*" }));
   // cors({ origin: "https://peaceful-kilby-bf3898.netlify.app/weijun/home" })
   app.use(express.static("public"));
 
