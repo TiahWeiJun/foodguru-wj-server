@@ -90,7 +90,6 @@ const postResolvers = {
         }
 
         if (user.username === post.username) {
-          fs.unlinkSync(post.imageURL);
           await post.delete();
 
           return "Post deleted successfully";
