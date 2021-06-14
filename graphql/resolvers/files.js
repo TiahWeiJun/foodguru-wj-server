@@ -51,18 +51,3 @@ const fileResolvers = {
   },
 };
 // url: `http://localhost:${process.env.PORT || 5000}/images/${randomName}`,
-//   (module.exports = fileResolvers);
-
-//   uploadFile: async (_, { file }) => {
-//     const { createReadStream, filename } = await file;
-
-//     await new Promise((res) =>
-//       createReadStream()
-//         .pipe(createWriteStream(path.join(__dirname, "../images", filename)))
-//         .on("close", res)
-//     );
-
-//     files.push(filename);
-
-//     return true;
-//   },
