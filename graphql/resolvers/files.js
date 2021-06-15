@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { uploadFile } = require("../../s3");
 
 const generateRandomString = (length) => {
   var result = [];
@@ -20,32 +21,26 @@ const fileResolvers = {
   },
   Mutation: {
     uploadFile: async (parent, { file }) => {
-      const { createReadStream, filename, mimetype, encoding } = await file;
+      // const { createReadStream, filename, mimetype, encoding } = await file;
+      console.log("arr");
 
-      const { ext } = path.parse(filename);
-      const randomName = generateRandomString(12) + ext;
+      const res = await uploadFile(file);
 
-      await new Promise((res) =>
-        createReadStream()
-          .pipe(
-            fs.createWriteStream(
-              path.join(__dirname, `../../public/images/${randomName}`)
-            )
-          )
-          .on("close", res)
-      );
+      // const { ext } = path.parse(filename);
+      // const randomName = generateRandomString(12) + ext;
 
-      // const stream = createReadStream();
-
-      // const pathName = path.join(
-      // __dirname,
-      // `../../public/images/${randomName}`
+      // await new Promise((res) =>
+      //   createReadStream()
+      //     .pipe(
+      //       fs.createWriteStream(
+      //         path.join(__dirname, `../../public/images/${randomName}`)
+      //       )
+      //     )
+      //     .on("close", res)
       // );
 
-      // await stream.pipe(fs.createWriteStream(pathName));
-
       return {
-        url: `https://foodguru-wj.herokuapp.com/images/${randomName}`,
+        url: res.Location,
       };
     },
   },
