@@ -3,9 +3,9 @@ require("dotenv").config();
 const fs = require("fs");
 
 const s3 = new S3({
-  accessKeyId: "AKIAXJCOM7XNSC45PGMI",
-  secretAccessKey: "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",
-  region: "ap-southeast-1",
+  accessKeyId: process.env.AWS_ACCESS_ID,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  region: process.env.AWS_REGION,
 });
 
 const generateRandomString = (length) => {
@@ -26,10 +26,10 @@ const uploadFile = async (file) => {
   try {
     const { createReadStream, filename } = await file;
 
-    const key = generateRandomString();
+    const key = generateRandomString(10);
 
     const uploadParams = {
-      Bucket: "images-wj",
+      Bucket: process.env.BUCKET_NAME,
       Body: createReadStream(),
       Key: `${key}/${filename}`,
     };
@@ -40,4 +40,17 @@ const uploadFile = async (file) => {
   }
 };
 
+const deleteFile = async (key) => {
+  const params = { Bucket: "images-wj", Key: key };
+  s3.deleteObject(params, function (err, data) {
+    if (err) {
+      console.log(err, err.stack);
+      return false;
+    }
+    return true;
+    // error
+  });
+};
+
 exports.uploadFile = uploadFile;
+exports.deleteFile = deleteFile;

@@ -1,6 +1,6 @@
 const Post = require("../../models/Post.js");
 const checkAuth = require("../../utils/checkAuth.js");
-const fs = require("fs");
+const { deleteFile } = require("../../s3");
 
 const postResolvers = {
   Query: {
@@ -91,7 +91,7 @@ const postResolvers = {
 
         if (user.username === post.username) {
           await post.delete();
-
+          // await deleteFile(post.imageURL);
           return "Post deleted successfully";
         } else {
           throw new Error("Action not allowed");
