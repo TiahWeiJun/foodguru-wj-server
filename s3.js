@@ -3,22 +3,41 @@ require("dotenv").config();
 const fs = require("fs");
 
 const s3 = new S3({
-  accessKeyId: process.env.AWS_ACCESS_ID,
-  secretAccessKey: process.env.AWS_SECRET_KEY,
-  region: process.env.AWS_REGION,
+  accessKeyId: "AKIAXJCOM7XNSC45PGMI",
+  secretAccessKey: "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",
+  region: "ap-southeast-1",
 });
 
+const generateRandomString = (length) => {
+  var result = [];
+  var characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result.push(
+      characters.charAt(Math.floor(Math.random() * charactersLength))
+    );
+  }
+  return result.join("");
+};
+
 // upload File
-const uploadFile = (file) => {
-  const fileStream = fs.createReadStream(file.path);
+const uploadFile = async (file) => {
+  try {
+    const { createReadStream, filename } = await file;
 
-  const uploadParams = {
-    Bucket: process.env.BUCKET_NAME,
-    Body: fileStream,
-    Key: file.filename,
-  };
+    const key = generateRandomString();
 
-  return s3.upload(uploadParams).promise();
+    const uploadParams = {
+      Bucket: "images-wj",
+      Body: createReadStream(),
+      Key: `${key}/${filename}`,
+    };
+
+    return s3.upload(uploadParams).promise();
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 exports.uploadFile = uploadFile;

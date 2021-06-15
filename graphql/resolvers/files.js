@@ -2,19 +2,6 @@ const fs = require("fs");
 const path = require("path");
 const { uploadFile } = require("../../s3");
 
-const generateRandomString = (length) => {
-  var result = [];
-  var characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result.push(
-      characters.charAt(Math.floor(Math.random() * charactersLength))
-    );
-  }
-  return result.join("");
-};
-
 const fileResolvers = {
   Query: {
     getFiles: () => files,
@@ -22,7 +9,6 @@ const fileResolvers = {
   Mutation: {
     uploadFile: async (parent, { file }) => {
       // const { createReadStream, filename, mimetype, encoding } = await file;
-      console.log("arr");
 
       const res = await uploadFile(file);
 
