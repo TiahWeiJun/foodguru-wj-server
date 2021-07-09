@@ -19,7 +19,7 @@ const startServer = async () => {
   });
 
   await mongoose.connect(
-    "mongodb+srv://weijun:tiahweijun@cluster0.utp7w.mongodb.net/Food?retryWrites=true&w=majority",
+    process.env.MONGODB,
     { useNewUrlParser: true },
     { useUnifiedTopology: true }
   );
