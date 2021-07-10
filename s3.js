@@ -29,7 +29,7 @@ const uploadFile = async (file) => {
     const key = generateRandomString(10);
 
     const uploadParams = {
-      Bucket: process.env.BUCKET_NAME,
+      Bucket: "images-wj",
       Body: createReadStream(),
       Key: `${key}/${filename}`,
     };
