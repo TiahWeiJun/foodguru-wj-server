@@ -16,6 +16,7 @@ const startServer = async () => {
     typeDefs,
     resolvers,
     context: ({ req }) => ({ req }),
+    csrfPrevention: true,
   });
 
   await mongoose.connect(

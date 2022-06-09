@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "antd": "^4.16.0",
-    "apollo-server": "^2.24.0",
+    "apollo-server": "^3.7.0",
     "apollo-server-express": "^2.24.1",
     "apollo-upload-client": "^15.0.0",
     "autoprefixer": "^9",
@@ -28,7 +28,6 @@
   "author": "",
   "license": "ISC",
   "resolutions": {
-    "fs-capacitor": "^6.2.0",
-    "graphql-upload": "^11.0.0"
+    "fs-capacitor": "^6.2.0"
   }
 }

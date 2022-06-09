@@ -6,30 +6,30 @@ const fileResolvers = {
   Query: {
     getFiles: () => files,
   },
-  Mutation: {
-    uploadFile: async (parent, { file }) => {
-      // const { createReadStream, filename, mimetype, encoding } = await file;
+  // Mutation: {
+  //   uploadFile: async (parent, { file }) => {
+  //     // const { createReadStream, filename, mimetype, encoding } = await file;
 
-      const res = await uploadFile(file);
+  //     const res = await uploadFile(file);
 
-      // const { ext } = path.parse(filename);
-      // const randomName = generateRandomString(12) + ext;
+  //     // const { ext } = path.parse(filename);
+  //     // const randomName = generateRandomString(12) + ext;
 
-      // await new Promise((res) =>
-      //   createReadStream()
-      //     .pipe(
-      //       fs.createWriteStream(
-      //         path.join(__dirname, `../../public/images/${randomName}`)
-      //       )
-      //     )
-      //     .on("close", res)
-      // );
+  //     // await new Promise((res) =>
+  //     //   createReadStream()
+  //     //     .pipe(
+  //     //       fs.createWriteStream(
+  //     //         path.join(__dirname, `../../public/images/${randomName}`)
+  //     //       )
+  //     //     )
+  //     //     .on("close", res)
+  //     // );
 
-      return {
-        url: res.Location,
-      };
-    },
-  },
+  //     return {
+  //       url: res.Location,
+  //     };
+  //   },
+  // },
 };
 
 module.exports = fileResolvers;

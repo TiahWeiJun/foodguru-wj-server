@@ -76,7 +76,7 @@ const typeDefs = gql`
     # createComment(postID: ID!, body: String!): Post!
     # deleteComment(postID: ID!, commentID: ID!): Post!
     likePost(postID: String!): Post!
-    uploadFile(file: Upload!): File!
+    # uploadFile(file: Upload!): File!
   }
   # type Subscription {
   #   newPost: Post!
